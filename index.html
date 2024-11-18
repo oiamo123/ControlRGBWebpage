@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="color" />
+    <a href="http://10.0.0.213:5000/shutdown">Shutdown</a>
+  </body>
+  <script>
+    const colorInput = document.querySelector(`input[type=color]`);
+    colorInput.addEventListener("change", async (e) => {
+      const color = e.target.value;
+      const r = parseInt(color.substr(1, 2), 16);
+      const g = parseInt(color.substr(3, 2), 16);
+      const b = parseInt(color.substr(5, 2), 16);
+      console.log(`red: ${r}, green: ${g}, blue: ${b}`);
+      await fetch(`http://10.0.0.213:5000/?red=${r}&blue=${b}&green=${g}`);
+    });
+  </script>
+</html>
